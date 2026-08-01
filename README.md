@@ -1,4 +1,30 @@
-Knihovna se základními enumy a rozhraním IPohyb.
-Slouží k implementaci rozhraní, nebo samostatných enumů do aplikací pracujících se skladovým, účetním a pokladním modulem.
-Implementace každého enumu zvlášť je možná bez chyb a nedostatků, stejně tak i implementace celé knihovny, včetně rozhraní.
-Doplnění popisků Menu, které mají samostatnou třídu PopiskyHelper, použitelnou i samostatně.
+# PohybHelper
+
+Sdílené základní typy pro evidenci pohybů (skladových, pokladních, finančních) napříč aplikacemi.
+
+## Obsah
+
+### Rozhraní `IPohyb`
+Společné rozhraní pro libovolný typ pohybu, umožňující jednotné řazení, filtrování a výpis napříč různými oblastmi evidence (např. propojení denní uzávěrky pokladny s účetnictvím).
+
+```csharp
+public interface IPohyb
+{
+    DateTime DatumCas { get; }
+    string Popis();
+}
+```
+
+### Výčtové typy
+- `SkladovyTypPohybu` – Naskladnění, Vyskladnění
+- `PokladniTypPohybu` – Prodej, Storno
+- `FinancniTypPohybu` – Příjem, Výdej
+
+Každý typ lze implementovat samostatně, nezávisle na `IPohyb`, i jako součást vlastní třídy implementující `IPohyb`.
+
+### `PopiskyHelper`
+Čte atribut `[Description]` u hodnot výčtového typu a vrací čitelný, česky psaný popisek pro zobrazení v menu. Použitelné i samostatně, nezávisle na zbytku knihovny.
+
+```csharp
+PopiskyHelper.ZiskejPopisek(PokladniTypPohybu.Prodej)  // "Prodej"
+```
