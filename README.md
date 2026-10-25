@@ -28,3 +28,13 @@ Každý typ lze implementovat samostatně, nezávisle na `IPohyb`, i jako souč�
 ```csharp
 PopiskyHelper.ZiskejPopisek(PokladniTypPohybu.Prodej)  // "Prodej"
 ```
+
+## Instalace jako NuGet balíček
+
+Tato knihovna je dostupná také jako balíček v **GitHub Packages**. Můžete si ji snadno přidat do svého projektu:
+
+1. Nastavte si jako zdroj balíčků váš GitHub (pokud ho ještě nemáte v NuGet.config).
+2. V **Package Manager Console** spusťte příkaz:
+   ```powershell
+   Install-Package BarevneVypisyHelper
+   ```
